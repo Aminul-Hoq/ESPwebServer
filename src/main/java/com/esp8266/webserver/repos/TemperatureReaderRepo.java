@@ -2,6 +2,7 @@ package com.esp8266.webserver.repos;
 
 import com.esp8266.webserver.entities.TemperatureEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,4 +18,5 @@ public interface TemperatureReaderRepo extends JpaRepository<TemperatureEntity, 
     List<TemperatureEntity> findByEntryDateBetween(LocalDate entryDate, LocalDate entryDate2);
 
     List<TemperatureEntity> findByEntryDate(LocalDate entryDate);
+
 }
