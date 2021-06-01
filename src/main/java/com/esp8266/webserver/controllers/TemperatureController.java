@@ -14,21 +14,12 @@ import java.util.List;
  * @author Aminul Hoque
  * @since 2021-05-30
  */
-
-/**
- * TODO add device registration and device mapping
- */
 @RestController
-@RequestMapping("/temp-reader")
-public class TemperatureReaderController {
+@RequestMapping("/temp-readers")
+public class TemperatureController {
 
     @Autowired
     private TemperatureReaderService service;
-
-    @PostMapping("/save")
-    public ResponseEntity<TemperatureEntity> saveTemp(@RequestBody TemperatureEntity entity) {
-        return ResponseEntity.ok(service.saveTemperature(entity));
-    }
 
     //    https://stackoverflow.com/questions/60371954/how-to-pass-local-date-in-path-variable-in-spring-boot
     @GetMapping("/get/{start-date}/{end-date}")
@@ -38,7 +29,8 @@ public class TemperatureReaderController {
     }
 
     @GetMapping("/get/day/{date}")
-    public List<TemperatureEntity> tempListByDateOne(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+    public List<TemperatureEntity> tempListByDateOne(
+            @PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return service.getTempByDay(date);
     }
 
